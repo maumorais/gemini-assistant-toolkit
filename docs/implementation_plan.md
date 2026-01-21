@@ -10,21 +10,21 @@ Este plano detalha a construção de um servidor MCP em Node.js focado em automa
 ## Proposed Changes
 
 ### Phase 0: Initial Configuration
-#### [NEW] [.gitignore](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/.gitignore)
+#### [NEW] [.gitignore](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/.gitignore)
 - Ignorar `node_modules`, `dist`, logs e outros arquivos de sistema.
 
-#### [NEW] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/GEMINI.md)
+#### [NEW] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/GEMINI.md)
 - Arquivo de memória do projeto e diretrizes gerais.
 
 ### Project Structure
-#### [NEW] [package.json](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/package.json)
+#### [NEW] [package.json](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/package.json)
 - Dependências: `@modelcontextprotocol/sdk`, `zod` (para validação de schema), `typescript`, `simple-git` (para operações git facilitadas).
 
-#### [NEW] [tsconfig.json](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/tsconfig.json)
+#### [NEW] [tsconfig.json](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/tsconfig.json)
 - Configuração estrita para TypeScript.
 
 ### MCP Server Core
-#### [NEW] [src/index.ts](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/src/index.ts)
+#### [NEW] [src/index.ts](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/src/index.ts)
 - Implementação do servidor MCP.
 - Definição da tool `git_commit_agent`.
 - Lógica de execução:
@@ -34,13 +34,13 @@ Este plano detalha a construção de um servidor MCP em Node.js focado em automa
   4. Executar push se `auto_push` for true.
 
 ### Documentation & Config
-#### [NEW] [README.md](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/README.md)
+#### [NEW] [README.md](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/README.md)
 - Guia de uso e instalação.
 
-#### [NEW] [docs/diagnostics.md](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/docs/diagnostics.md)
+#### [NEW] [docs/diagnostics.md](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/docs/diagnostics.md)
 - Guia para validar se a tool está ativa.
 
-#### [MODIFY] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/GEMINI.md)
+#### [MODIFY] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/GEMINI.md)
 - Adicionar template de instrução "Chain of Thought".
 
 ## Verification Plan
@@ -51,7 +51,7 @@ Este plano detalha a construção de um servidor MCP em Node.js focado em automa
 
 ### Phase 1: Refactor & Upgrade to Gemini Assistant Toolkit
 
-#### [NEW] [src/toolkit-server.ts](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/src/toolkit-server.ts)
+#### [NEW] [src/toolkit-server.ts](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/src/toolkit-server.ts)
 - **Consolidação**: Substitui `src/index.ts`.
 - **Renomeação**: Servidor passa a ser `gemini-assistant-toolkit`.
 
@@ -66,13 +66,13 @@ Este plano detalha a construção de um servidor MCP em Node.js focado em automa
 - **Input**: `objective`, `changed_files`, `technical_decisions`.
 - **Ação**: Escreve em `~/.gemini/shadow_context.json`.
 
-#### [MODIFY] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/GEMINI.md)
+#### [MODIFY] [GEMINI.md](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/GEMINI.md)
 - **Novas Diretrizes**:
   1. **Checkpoint Automático**: Invocar `silent_logger` a cada resposta.
   2. **Smart Commit Flow**: Análise via contexto -> Sugestão -> `git_commit_agent`.
   3. **Reboot Protocol**: Ler `shadow_context.json` ao iniciar com "reboot".
 
-#### [MODIFY] [package.json](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/package.json)
+#### [MODIFY] [package.json](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/package.json)
 - Atualizar script de build/start para o novo entrypoint.
 
 #### [MODIFY] [docs/gemini-settings-snippet.json]
@@ -145,7 +145,7 @@ Este plano detalha a construção de um servidor MCP em Node.js focado em automa
 
 Mover arquivos de teste da raiz para a pasta `tests/` para manter a raiz limpa.
 
-#### [NEW] [tests/](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/tests)
+#### [NEW] [tests/](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/tests)
 - Criar diretório para scripts de teste.
 
 #### [MOVE & MODIFY] `verify-logger.js`
@@ -177,7 +177,7 @@ Criar um pacote de distribuição "Unzip & Run" para facilitar o uso do servidor
 - **New Behavior**: Journal should be saved in `<current_working_directory>/docs`.
 - **Reason**: Allows the server to be installed once and used across multiple projects, keeping context local to each project.
 
-#### [NEW] [release/](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/release)
+#### [NEW] [release/](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/release)
 - Diretório temporário para montar o kit.
 
 #### Contents
@@ -196,10 +196,10 @@ Criar um pacote de distribuição "Unzip & Run" para facilitar o uso do servidor
 
 Criar um processo automatizado para gerar kits de instalação versionados.
 
-#### [NEW] [packaging/templates/](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/packaging/templates)
+#### [NEW] [packaging/templates/](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/packaging/templates)
 - Armazenar os arquivos estáticos do kit (`README.txt`, `global_rules.txt`).
 
-#### [NEW] [packaging/scripts/package-release.js](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/packaging/scripts/package-release.js)
+#### [NEW] [packaging/scripts/package-release.js](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/packaging/scripts/package-release.js)
 - **Lógica**:
   1. Ler arquivo `package.json` para obter a versão atual (ex: `1.0.0`).
   2. Limpar/recriar pasta `releases/`.
@@ -223,7 +223,7 @@ Criar um processo automatizado para gerar kits de instalação versionados.
 
 Mover pastas "administrativas" (`scripts/` e `release-templates/`) para uma pasta dedicada `packaging/` para limpar a raiz do projeto.
 
-#### [NEW] [packaging/](file:///c:/Desenvolvimento/GitHub/personal-git-mcp-server/packaging)
+#### [NEW] [packaging/](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/packaging)
 - Nova pasta raiz para recursos de empacotamento.
 
 #### [MOVE] `release-templates/` -> `packaging/templates/`
@@ -251,7 +251,7 @@ Mover pastas "administrativas" (`scripts/` e `release-templates/`) para uma past
 
 ### Phase 12: Rebranding
 
-Alterar identidade do projeto de `personal-git-mcp-server` para `gemini-assistant-toolkit`.
+Alterar identidade do projeto de `gemini-assistant-toolkit` para `gemini-assistant-toolkit`.
 
 #### [MODIFY] [package.json]
 - **Name**: `gemini-assistant-toolkit`
@@ -266,3 +266,27 @@ Alterar identidade do projeto de `personal-git-mcp-server` para `gemini-assistan
 
 ### Cleanup
 - Remover pasta `releases/`.
+
+### Phase 13: Post-Rebranding Verification
+
+## Goal
+Verify that the project builds and packages correctly after the repository and folder renaming.
+
+## Proposed Changes
+No code changes are expected unless the verification fails. This is strictly a verification phase.
+
+## Verification Plan
+
+### 1. Script Validation
+- Review `package.json` to ensure script names align with current structure.
+- Review `packaging/scripts/package-release.js` for any hardcoded paths that might reference the old folder name.
+
+### 2. Execution
+- Run `npm install` (ensure dependencies are clean).
+- Run `npm run build` (verify TypeScript compilation).
+- Run `npm run package` (verify release kit generation).
+
+### 3. Validation
+- Inspect the generated `releases/` directory.
+- Check if `README.txt` and `global_rules.txt` are correctly copied.
+- Check if `dist/` contains the compiled output.

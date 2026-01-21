@@ -44,42 +44,45 @@
   - [X] Update `GEMINI.md` with final rules
   - [X] Bootstrap `~/.gemini/shadow_context.json`
   - [X] Update `docs/diagnostics.md` with new toolkit info
-
 - [X] Phase 3: Silent Logger Refactor (Project-Local)
 
   - [X] Modify `src/toolkit-server.ts` to use `docs/journal.md`
   - [X] Update `GEMINI.md` (Reboot rule)
-
   - [X] Verify `docs/journal.md` creation via script
   - [X] Update diagnostics info
 - [X] Phase 4: Technical Hardening
+
   - [X] Implement File Locking for `journal.md`
   - [X] Implement Merge Conflict Detection in `git_commit_agent`
   - [X] Verify hardening with `stress-test.js`
 - [X] Phase 5: Final Documentation
+
   - [X] Update README with Troubleshooting
   - [X] Refine GEMINI.md Instructions
 - [X] Phase 5: Final Documentation
+
   - [X] Update README with Troubleshooting
   - [X] Refine GEMINI.md Instructions
 - [X] Phase 6: Silent Logger Consolidator (Refactor v2)
+
   - [X] Implement Consolidated Header Logic in `toolkit-server.ts`
   - [X] Implement History Append (below header)
   - [X] Verify output structure
 - [X] Phase 7: Pro Refinement & Cleanup
+
   - [X] Code Review: Confirm recursive mkdir in toolkit-server
   - [X] Doc: Update README (Install Guide)
   - [X] Doc: Update GEMINI.md (Protocol)
   - [X] Clean: Update .gitignore (No changes needed)
-
 - [X] Phase 8: Refactoring Test Scripts
+
   - [X] Identify test files in root `verify-logger.js`, `stress-test.js`, `debug-logger.js`
   - [X] Create `tests/` directory
   - [X] Move test files to `tests/`
   - [X] Check and update references in `GEMINI.md` or `README.md`
   - [X] Create `tests/README.md` with script documentation
-
 - [X] Phase 9: Creation of Installation Kit
+
   - [X] Fix Journal Path Logic (Use CWD)
   - [X] Create `release/` directory structure
   - [X] Copy `dist/`, `node_modules` and `package.json`
@@ -87,6 +90,7 @@
   - [X] Create `global_rules.txt` (from GEMINI.md)
   - [X] Verify functionality of the kit
 - [X] Phase 10: Automated Release Packaging
+
   - [X] Create `release-templates/` directory
   - [X] Move `README.txt` and `global_rules.txt` to templates
   - [X] Create `scripts/package-release.js` (Auto-versioning)
@@ -94,14 +98,29 @@
   - [X] Update project `README.md` with release instructions
   - [X] Execute packaging and verify `releases/` folder
 - [X] Phase 11: Consolidate Packaging Folders
-  - [X] Create `packaging/` directory <!-- id: 18 -->
-  - [X] Move `scripts/` and `release-templates/` to `packaging/` <!-- id: 19 -->
-  - [X] Update `package.json` scripts <!-- id: 20 -->
-  - [X] Refactor `package-release.js` paths <!-- id: 21 -->
-  - [X] Verify packaging command <!-- id: 22 -->
-- [ ] Phase 12: Rebranding to Gemini Assistant Toolkit
-  - [X] Update `package.json` (name & urls) <!-- id: 23 -->
-  - [X] Update `README.md` (titles & paths) <!-- id: 24 -->
-  - [X] Update documentation paths (`docs/`) <!-- id: 25 -->
-  - [X] Clean up old `releases/` <!-- id: 26 -->
-  - [ ] Final Commit <!-- id: 27 -->
+
+  - [X] Create `packaging/` directory `<!-- id: 18 -->`
+  - [X] Move `scripts/` and `release-templates/` to `packaging/` `<!-- id: 19 -->`
+  - [X] Update `package.json` scripts `<!-- id: 20 -->`
+  - [X] Refactor `package-release.js` paths `<!-- id: 21 -->`
+  - [X] Verify packaging command `<!-- id: 22 -->`
+- [X] Phase 12: Rebranding to Gemini Assistant Toolkit
+
+  - [X] Update `package.json` (name & urls) `<!-- id: 23 -->`
+  - [X] Update `README.md` (titles & paths) `<!-- id: 24 -->`
+  - [X] Update documentation paths (`docs/`) `<!-- id: 25 -->`
+  - [X] Clean up old `releases/` `<!-- id: 26 -->`
+  - [X] Final Commit <!-- id: 27 -->
+
+- [X] Phase 13: Post-Rebranding Verification
+  - [X] Verify `package.json` scripts
+  - [X] Run Clean Build (`npm run build`)
+  - [X] Run Packaging (`npm run package`)
+  - [X] Validate Release Artifacts
+
+- [X] Phase 14: Cleanup Legacy References
+  - [X] Search for `personal-git-mcp-server`
+  - [X] Replace with `gemini-assistant-toolkit`
+  - [X] Replace with `gemini-assistant-toolkit`
+  - [X] Verify clean state
+  - [X] Regenerate Release (Consistency Check)
