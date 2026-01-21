@@ -1,0 +1,35 @@
+{
+  "name": "personal-git-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP pessoal para integrar com repositório GIT",
+  "main": "dist/toolkit-server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/toolkit-server.js",
+    "package": "node packaging/scripts/package-release.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "simple-git": "^3.27.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "typescript": "^5.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://maumorais@github.com/maumorais/personal-git-mcp-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maumorais/personal-git-mcp-server/issues"
+  },
+  "homepage": "https://github.com/maumorais/personal-git-mcp-server#readme"
+}
