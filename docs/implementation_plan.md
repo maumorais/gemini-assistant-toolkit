@@ -248,3 +248,21 @@ Mover pastas "administrativas" (`scripts/` e `release-templates/`) para uma past
 ### Verification Plan
 - Executar `npm run package`.
 - Verificar se o build e o empacotamento continuam funcionando.
+
+### Phase 12: Rebranding
+
+Alterar identidade do projeto de `personal-git-mcp-server` para `gemini-assistant-toolkit`.
+
+#### [MODIFY] [package.json]
+- **Name**: `gemini-assistant-toolkit`
+- **Repository**: `https://github.com/maumorais/gemini-assistant-toolkit`
+
+#### [MODIFY] [README.md]
+- Atualizar Título.
+- Atualizar paths para `c:\Desenvolvimento\GitHub\gemini-assistant-toolkit`.
+
+#### [MODIFY] [docs/*]
+- Atualizar referências de caminhos absolutos.
+
+### Cleanup
+- Remover pasta `releases/`.

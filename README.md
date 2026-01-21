@@ -1,4 +1,4 @@
-# Gemini Assistant Toolkit (fka Personal Git MCP Server)
+# Gemini Assistant Toolkit
 
 Um servidor MCP (Model Context Protocol) projetado para automação de Git com alta fidelidade e persistência de contexto.
 
@@ -35,7 +35,7 @@ Adicione ao seu `~/.gemini/settings.json` (ou equivalente):
     "gemini-toolkit": {
       "command": "node",
       "args": [
-        "c:\\Desenvolvimento\\GitHub\\personal-git-mcp-server\\dist\\toolkit-server.js"
+        "c:\\Desenvolvimento\\GitHub\\gemini-assistant-toolkit\\dist\\toolkit-server.js"
       ]
     }
   }

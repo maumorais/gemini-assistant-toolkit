@@ -99,3 +99,9 @@
   - [X] Update `package.json` scripts <!-- id: 20 -->
   - [X] Refactor `package-release.js` paths <!-- id: 21 -->
   - [X] Verify packaging command <!-- id: 22 -->
+- [ ] Phase 12: Rebranding to Gemini Assistant Toolkit
+  - [X] Update `package.json` (name & urls) <!-- id: 23 -->
+  - [X] Update `README.md` (titles & paths) <!-- id: 24 -->
+  - [X] Update documentation paths (`docs/`) <!-- id: 25 -->
+  - [X] Clean up old `releases/` <!-- id: 26 -->
+  - [ ] Final Commit <!-- id: 27 -->

@@ -8,7 +8,7 @@ O novo servidor utiliza `npx tsc` para compilação.
 Certifique-se de estar na raiz do projeto:
 
 ```bash
-cd c:\Desenvolvimento\GitHub\personal-git-mcp-server
+cd c:\Desenvolvimento\GitHub\gemini-assistant-toolkit
 npm run build
 ```
 
