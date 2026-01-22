@@ -61,7 +61,10 @@ function releaseLock(lockPath: string) {
 // --- Schemas ---
 
 const GitCommitAgentSchema = z.object({
-    commit_message: z.string().describe("The commit message to use. The Agent (Gemini) MUST have already analyzed the diff and proposed this message in Conventional Commits format."),
+    project_id: z.string().describe("The Project ID (e.g., AUTOMATIZACAO-MORFEU). MUST be obtained from GEMINI.md or context."),
+    commit_type: z.enum(["func", "fix", "refactor", "test", "docs", "style", "build"]).describe("The type of commit. MUST be one of: func, fix, refactor, test, docs, style, build."),
+    commit_title: z.string().describe("A concise summary of the change."),
+    commit_description: z.string().describe("A detailed description of the change."),
 });
 
 const SilentLoggerSchema = z.object({
@@ -77,16 +80,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         tools: [
             {
                 name: "git_commit_agent",
-                description: "Executor for Git operations. Performs 'git add .' and 'git commit'. LOGIC: The thinking happens BEFORE calling this. This tool just executes.",
+                description: "Executor for Git operations with strict formatting. Receives structured arguments and assembles the commit message internally.",
                 inputSchema: {
                     type: "object",
                     properties: {
-                        commit_message: {
-                            type: "string",
-                            description: "The commit message (Conventional Commits).",
+                        project_id: { type: "string", description: "Project Identifier (e.g. AUTOMATIZACAO-MORFEU)." },
+                        commit_type: { 
+                            type: "string", 
+                            enum: ["func", "fix", "refactor", "test", "docs", "style", "build"],
+                            description: "Commit Type (func, fix, refactor, test, docs, style, build)" 
                         },
+                        commit_title: { type: "string", description: "Short title" },
+                        commit_description: { type: "string", description: "Detailed description" }
                     },
-                    required: ["commit_message"],
+                    required: ["project_id", "commit_type", "commit_title", "commit_description"],
                 },
             },
             {
@@ -118,7 +125,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         if (!parseResult.success) {
             throw new McpError(ErrorCode.InvalidParams, `Invalid arguments: ${parseResult.error.message}`);
         }
-        const { commit_message } = parseResult.data;
+        const { project_id, commit_type, commit_title, commit_description } = parseResult.data;
+
+        const finalMessage = `${commit_type} : ${commit_title}\n\n${project_id}\n${commit_description}`;
 
         try {
             // Safety Check: Detect Merge Conflicts
@@ -129,13 +138,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
             // Logic: Zero-cost executor. "Add all" + "Commit"
             await git.add(".");
-            const commitResult = await git.commit(commit_message);
+            const commitResult = await git.commit(finalMessage);
 
             return {
                 content: [
                     {
                         type: "text",
-                        text: `Git Operation Successful.\nExecuted: git add . && git commit -m "${commit_message}"\nBranch: ${commitResult.branch}\nCommit: ${commitResult.commit}`,
+                        text: `Git Operation Successful.\nExecuted: git add . && git commit\nMessage:\n${finalMessage}\n\nBranch: ${commitResult.branch}\nCommit: ${commitResult.commit}`,
                     },
                 ],
             };

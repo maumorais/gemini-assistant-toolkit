@@ -124,3 +124,15 @@
   - [X] Replace with `gemini-assistant-toolkit`
   - [X] Verify clean state
   - [X] Regenerate Release (Consistency Check)
+
+- [ ] Phase 15: Implement Strict Commit Pattern
+  - [X] Update `implementation_plan.md`
+  - [X] Refactor `git_commit_agent` (Schema & Logic)
+  - [X] Update `GEMINI.md` (Add Project ID)
+  - [X] Update `packaging/templates/global_rules.txt`
+  - [X] Verify with Test Commit (`--dry-run` or manual)
+
+- [ ] Phase 16: Release 1.0.1
+  - [X] Bump version in `package.json`
+  - [X] Run `npm run package`
+  - [X] Final Commit

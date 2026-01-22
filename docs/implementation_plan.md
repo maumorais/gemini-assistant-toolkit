@@ -290,3 +290,62 @@ No code changes are expected unless the verification fails. This is strictly a v
 - Inspect the generated `releases/` directory.
 - Check if `README.txt` and `global_rules.txt` are correctly copied.
 - Check if `dist/` contains the compiled output.
+
+### Phase 15: Implement Strict Commit Pattern
+
+## Goal
+Enforce a standardized commit message format across all projects using the `git_commit_agent`.
+Format:
+```text
+<TYPE> : <TITLE>
+
+<PROJECT_ID>
+<DESCRIPTION>
+```
+
+## User Review Required
+> [!IMPORTANT]
+> This is a breaking change for the `git_commit_agent` tool signature. The Agent must provide structured arguments instead of a single message string.
+
+## Proposed Changes
+
+### 1. Refactor Tool Schema (`src/toolkit-server.ts`)
+- **Remove**: `commit_message` (string).
+- **Add**:
+  - `project_id` (string, required): The project identifier (e.g., `AUTOMATIZACAO-MORFEU`).
+  - `commit_type` (enum, required): `func`, `fix`, `refactor`, `test`, `docs`, `style`, `build`.
+  - `commit_title` (string, required): Short summary.
+  - `commit_description` (string, required): Detailed description.
+
+### 2. Implement Formatting Logic
+- Inside the tool execution, construct the final message:
+  ```typescript
+  const finalMessage = `${args.commit_type} : ${args.commit_title}\n\n${args.project_id}\n${args.commit_description}`;
+  ```
+- Pass this `finalMessage` to the git command.
+
+### 3. Update Project Context (`GEMINI.md`)
+- Add a dedicated section or header to define the `Project ID` for the current project (`gemini-assistant-toolkit`).
+- **Action Required**: Define ID for this project (Suggested: `GEMINI-TOOLKIT`).
+
+## Verification Plan
+
+### Manual Verification
+1.  Attempt to commit using the new tool signature.
+2.  Verify `git log` shows the exact formatting with the correct spacing and ID.
+3.  Attempt to commit with an invalid type (e.g., `feat`) and ensure it fails validation.
+
+### Phase 16: Release 1.0.1
+
+## Goal
+Package and release version 1.0.1, including the new Strict Commit Pattern rules and updated templates.
+
+## Proposed Changes
+1.  **Version Bump**: Update `package.json` to 1.0.1.
+2.  **Template Update**: Ensure `global_rules.txt` in templates reflects the new strict commit pattern.
+3.  **Packaging**: Run `npm run package` to generate the release artifact.
+
+## Verification
+- Check `releases/gemini-assistant-toolkit-1.0.1` existence.
+- Verify `package.json` version inside the release.
+- Verify `global_rules.txt` content inside the release.

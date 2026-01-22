@@ -4,6 +4,11 @@
 
 - **TypeScript Strict**: Todo código deve ser fortemente tipado.
 
+## Identificação do Projeto
+
+> **Project ID**: `GEMINI-TOOLKIT`
+> (Este ID deve ser usado em todos os commits via `git_commit_agent`)
+
 ## Protocolos do Agente (Gemini)
 
 > **CRÍTICO**: Você deve seguir estes protocolos rigorosamente.
