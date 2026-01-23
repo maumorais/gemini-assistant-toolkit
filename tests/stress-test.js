@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const path = require('path');
 
-const serverPath = path.join(__dirname, '..', 'dist', 'toolkit-server.js');
+const serverPath = path.join(__dirname, '..', 'dist', 'index.js');
 const CONCURRENT_REQUESTS = 5;
 
 console.log(`Starting stress test with ${CONCURRENT_REQUESTS} concurrent requests...`);

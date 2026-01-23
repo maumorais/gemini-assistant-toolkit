@@ -35,7 +35,7 @@ Adicione ao seu `~/.gemini/settings.json` (ou equivalente):
     "gemini-toolkit": {
       "command": "node",
       "args": [
-        "c:\\Desenvolvimento\\GitHub\\gemini-assistant-toolkit\\dist\\toolkit-server.js"
+        "c:\\Desenvolvimento\\GitHub\\gemini-assistant-toolkit\\dist\\index.js"
       ]
     }
   }
@@ -44,7 +44,9 @@ Adicione ao seu `~/.gemini/settings.json` (ou equivalente):
 
 ## Desenvolvimento
 
-- `src/toolkit-server.ts`: Código fonte unificado do servidor.
+- `src/index.ts`: Ponto de entrada (Server Class).
+- `src/tools/`: Definições das ferramentas MCP.
+- `src/services/`: Lógica de negócio (Git, Journal).
 - `docs/`: Documentação, journal e artefatos de planejamento.
 
 ## Troubleshooting

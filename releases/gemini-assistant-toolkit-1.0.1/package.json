@@ -2,13 +2,13 @@
   "name": "gemini-assistant-toolkit",
   "version": "1.0.1",
   "description": "MCP pessoal para integrar com repositório GIT",
-  "main": "dist/toolkit-server.js",
+  "main": "dist/index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/toolkit-server.js",
+    "start": "node dist/index.js",
     "package": "node packaging/scripts/package-release.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

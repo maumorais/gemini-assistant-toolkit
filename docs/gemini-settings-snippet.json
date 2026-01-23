@@ -3,7 +3,7 @@
         "gemini-toolkit": {
             "command": "node",
             "args": [
-                "c:\\Desenvolvimento\\GitHub\\gemini-assistant-toolkit\\dist\\toolkit-server.js"
+                "c:\\Desenvolvimento\\GitHub\\gemini-assistant-toolkit\\dist\\index.js"
             ]
         }
     }

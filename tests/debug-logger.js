@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const path = require('path');
 
-const serverPath = path.join(__dirname, '..', 'dist', 'toolkit-server.js');
+const serverPath = path.join(__dirname, '..', 'dist', 'index.js');
 console.log(`Spawning server at: ${serverPath}`);
 const serverProcess = spawn('node', [serverPath], { stdio: ['pipe', 'pipe', 'pipe'] });
 

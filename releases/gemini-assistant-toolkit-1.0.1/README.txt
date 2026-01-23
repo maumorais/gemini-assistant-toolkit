@@ -24,7 +24,7 @@ CONFIGURAÇÃO NO GEMINI
    "gemini-toolkit": {
      "command": "node",
      "args": [
-       "C:\\Ferramentas\\gemini-toolkit\\dist\\toolkit-server.js"
+       "C:\\Ferramentas\\gemini-toolkit\\dist\\index.js"
      ]
    }
 

@@ -9,6 +9,12 @@
 > **Project ID**: `GEMINI-TOOLKIT`
 > (Este ID deve ser usado em todos os commits via `git_commit_agent`)
 
+## Documentação e Planejamento
+
+- **Artifacts**: Todos os planos de implementação (`implementation_plan.md`) e tarefas (`task.md`) devem ser mantidos na pasta `docs/`.
+- **Archive & Reset**: Ao final de uma fase significativa (ex: release, refatoração maior), os arquivos `task.md` e `implementation_plan.md` DEVEM ser arquivados em `docs/archive/` (com nome descritivo ex: `task_v1.0.0.md`) e os arquivos principais resetados para a nova fase.
+
+
 ## Protocolos do Agente (Gemini)
 
 > **CRÍTICO**: Você deve seguir estes protocolos rigorosamente.
