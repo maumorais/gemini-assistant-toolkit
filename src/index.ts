@@ -10,6 +10,15 @@ import {
 import { GitCommitTool } from "./tools/GitCommitTool.js";
 import { SilentLoggerTool } from "./tools/SilentLoggerTool.js";
 import { ProjectPlannerTool } from "./tools/ProjectPlannerTool.js";
+import { GitInspectorTool } from "./tools/GitInspectorTool.js";
+import { GitBranchTool } from "./tools/GitBranchTool.js";
+import { CodeInspectorTool } from "./tools/CodeInspectorTool.js";
+import { TodoScannerTool } from "./tools/TodoScannerTool.js";
+import { ContextTool } from "./tools/ContextTool.js";
+import { VerificationTool } from "./tools/VerificationTool.js";
+import { KnowledgeTool } from "./tools/KnowledgeTool.js";
+import { DecisionTool } from "./tools/DecisionTool.js";
+import { ReviewTool } from "./tools/ReviewTool.js";
 import { ITool } from "./interfaces/ITool.js";
 
 class ToolkitServer {
@@ -20,7 +29,7 @@ class ToolkitServer {
         this.server = new Server(
             {
                 name: "gemini-assistant-toolkit",
-                version: "1.2.0",
+                version: "1.3.0",
             },
             {
                 capabilities: {
@@ -32,7 +41,16 @@ class ToolkitServer {
         this.tools = [
             new GitCommitTool(),
             new SilentLoggerTool(),
-            new ProjectPlannerTool()
+            new ProjectPlannerTool(),
+            new GitInspectorTool(),
+            new GitBranchTool(),
+            new CodeInspectorTool(),
+            new TodoScannerTool(),
+            new ContextTool(),
+            new VerificationTool(),
+            new KnowledgeTool(),
+            new DecisionTool(),
+            new ReviewTool()
         ];
 
         this.setupHandlers();

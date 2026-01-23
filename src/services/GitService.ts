@@ -25,4 +25,20 @@ export class GitService {
             message: message
         };
     }
+
+    public async getLog(limit: number = 10): Promise<any> {
+        return await this.git.log({ maxCount: limit });
+    }
+
+    public async getBranches(): Promise<any> {
+        return await this.git.branchLocal();
+    }
+
+    public async createBranch(branchName: string): Promise<void> {
+        await this.git.checkoutLocalBranch(branchName);
+    }
+
+    public async checkoutBranch(branchName: string): Promise<void> {
+        await this.git.checkout(branchName);
+    }
 }

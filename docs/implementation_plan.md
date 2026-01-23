@@ -1,23 +1,25 @@
-# Implementation Plan: " The Architect" Upgrade (v1.2.1)
+# Implementation Plan: v1.3.0 "DevXP Suite" (Batch 3)
 
 ## Goal Description
-Enhance `project_planner` to automate the "Archive & Reset" strategy. This allows the user/agent to close a phase and save history with a single command, keeping `docs/` clean.
+Implement 5 advanced tools to simulate "Antigravity behavior" within the Gemini Code Assist agent.
 
-## Proposed Changes
+## Proposed Features (Batch 3)
 
-### 1. Update Service: `PlanningService`
-*   **Method**: `archiveCurrentPlan(label: string)`
+### 1. `ContextTool` (`context_map`)
+*   Generates a high-level summary of the project structure and key files (package.json, README, etc.) to ground the agent.
+
+### 2. `VerificationTool` (`verification_agent`)
+*   Executes pre-defined verification commands (npm test, npm run build) and returns the raw output/exit code.
+
+### 3. `KnowledgeTool` (`knowledge_retriever`)
+*   Searches `docs/` and `journal.md` for specific keywords to answer architectural questions.
+
+### 4. `DecisionTool` (`next_step_advisor`)
+*   Reads `task.md` status + `journal.md` last entry + `git status` to recommend the next logical action.
+
+### 5. `ReviewTool` (`code_reviewer`)
+*   **Action**: `review_changes`
 *   **Logic**:
-    1.  Check if `docs/archive/` exists (create if not).
-    2.  Copy `task.md` -> `docs/archive/task_<label>.md`.
-    3.  Copy `implementation_plan.md` -> `docs/archive/plan_<label>.md`.
-    4.  (Optional) Reset the current files to a blank template? -> *Decision: No, just archive. The next `init_plan` will overwrite/reset them.*
-
-### 2. Update Tool: `ProjectPlannerTool`
-*   **Action**: `archive_plan`
-*   **Arguments**: `archive_label` (Required).
-*   **Description**: "Archives the current plan/task items to `docs/archive/` for historical reference."
-
-## Verification Plan
-1.  **Test**: Call `project_planner` with action `archive_plan` and label `test_v1.2.1`.
-2.  **Expectation**: Files appear in `docs/archive/` with the correct suffix.
+    1.  Gets staged files (diff).
+    2.  Applies static analysis rules (simulation: check for console.log, check for missing types, check for long functions).
+    3.  Returns a report: "Warning: found console.log in ..."

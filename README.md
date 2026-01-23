@@ -14,6 +14,11 @@ Um servidor MCP (Model Context Protocol) projetado para automação de Git com a
   - Cria e gerencia `docs/task.md` e `docs/implementation_plan.md`.
   - Força o agente a "Planejar antes de Agir" (com suporte da Regra Global).
   - Capacidade de arquivar planos antigos (`archive_plan`).
+- **DevXP Suite (v1.3.0)**:
+  - **Git**: `git_inspector`, `git_branch_manager`.
+  - **Code Analysis**: `code_inspector`, `project_tasks` (Todo Scanner).
+  - **Brain Transplant**: `context_map` (Situational Awareness), `knowledge_retriever` (Docs), `verification_agent` (Test Runner).
+  - **Advisors**: `next_step_advisor`, `code_reviewer` (QA).
 
 ## Instalação
 
