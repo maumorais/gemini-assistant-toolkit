@@ -20,7 +20,7 @@ npm run build
 Foi criado um script de verificação que simula uma chamada ao `silent_logger`. Execute-o:
 
 ```bash
-node verify-logger.js
+node tests/verify-logger.js
 ```
 
 **Resultado Esperado**:
@@ -37,7 +37,7 @@ SUCCESS: Content verification passed.
 Para verificar a robustez contra concorrência e conflitos:
 
 ```bash
-node stress-test.js
+node tests/stress-test.js
 ```
 *Espera-se que 5 requisições concorrentes sejam processadas sequencialmente sem erro de arquivo (graças ao lock).*
 
@@ -62,5 +62,5 @@ Abra `docs/journal.md`. Ele deve seguir este formato:
 
 ### Troubleshooting
 
-- **Erro de Conexão**: Verifique se o caminho em `settings.json` aponta para `dist/toolkit-server.js` (e não `index.js`).
+- **Erro de Conexão**: Verifique se o caminho em `settings.json` aponta para `dist/index.js` (e não `toolkit-server.js`).
 - **Tool não encontrada**: Certifique-se de ter rodado `npm run build` após a última atualização.

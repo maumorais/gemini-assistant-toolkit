@@ -9,6 +9,7 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { GitCommitTool } from "./tools/GitCommitTool.js";
 import { SilentLoggerTool } from "./tools/SilentLoggerTool.js";
+import { ProjectPlannerTool } from "./tools/ProjectPlannerTool.js";
 import { ITool } from "./interfaces/ITool.js";
 
 class ToolkitServer {
@@ -19,7 +20,7 @@ class ToolkitServer {
         this.server = new Server(
             {
                 name: "gemini-assistant-toolkit",
-                version: "1.1.0",
+                version: "1.2.0",
             },
             {
                 capabilities: {
@@ -30,7 +31,8 @@ class ToolkitServer {
 
         this.tools = [
             new GitCommitTool(),
-            new SilentLoggerTool()
+            new SilentLoggerTool(),
+            new ProjectPlannerTool()
         ];
 
         this.setupHandlers();

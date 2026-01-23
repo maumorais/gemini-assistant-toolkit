@@ -1,12 +1,17 @@
-# New Tools & Enhancements (v1.2.0 Planning)
+# New Tools & Enhancements (v1.2.0)
 
-- [ ] Phase 1: Planning
-  - [ ] Define new tool requirements
-  - [ ] Update `implementation_plan.md`
+- [/] Phase 1: Planning
+  - [x] Brainstorming: Define "The Architect" concept
+  - [ ] Detail tool specifications in `implementation_plan.md`
+  - [ ] Define updates to `global_rules.txt`
 
 - [ ] Phase 2: Implementation
-  - [ ] Implement Tool: [Name]
-  - [ ] Implement Tool: [Name]
+  - [ ] **Tool**: Implement `ProjectPlannerTool`
+    - [ ] `create_plan(goal, steps)`
+    - [ ] `update_progress(step_index, status)`
+  - [ ] **Service**: Implement `PlanningService` (Markdown manipulation)
 
-- [ ] Phase 3: Verification
-  - [ ] Verify functionality
+- [ ] Phase 3: Instruction & Verification
+  - [ ] Update `packaging/templates/global_rules.txt` (Enforce planning)
+  - [ ] Verify agent behavior with new rules
+  - [ ] Package & Release v1.2.0
