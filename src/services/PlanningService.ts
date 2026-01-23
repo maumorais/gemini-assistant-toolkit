@@ -63,4 +63,32 @@ export class PlanningService {
         fs.writeFileSync(this.taskFile, newLines.join('\n'));
         return `Updated task ${stepIndex} to status '${status}'`;
     }
+
+    public async archiveCurrentPlan(label: string): Promise<string> {
+        const archiveDir = path.join(this.docsDir, "archive");
+        if (!fs.existsSync(archiveDir)) {
+            fs.mkdirSync(archiveDir, { recursive: true });
+        }
+
+        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+        // Sanitize label to be safe for filenames
+        const safeLabel = label.replace(/[^a-zA-Z0-9_-]/g, "_");
+
+        let movedFiles = [];
+
+        if (fs.existsSync(this.taskFile)) {
+            const target = path.join(archiveDir, `task_${safeLabel}.md`);
+            fs.copyFileSync(this.taskFile, target);
+            movedFiles.push("task.md");
+        }
+
+        if (fs.existsSync(this.planFile)) {
+            const target = path.join(archiveDir, `implementation_plan_${safeLabel}.md`);
+            fs.copyFileSync(this.planFile, target);
+            movedFiles.push("implementation_plan.md");
+        }
+
+        if (movedFiles.length === 0) return "No active plan files found to archive.";
+        return `Archived ${movedFiles.join(", ")} to docs/archive/ with label '${safeLabel}'.`;
+    }
 }

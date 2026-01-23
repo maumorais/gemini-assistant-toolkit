@@ -10,6 +10,10 @@ Um servidor MCP (Model Context Protocol) projetado para automação de Git com a
 - **`silent_logger`**: Persistência de Contexto.
   - Salva o estado atual (objetivo, arquivos alterados, decisões) em `docs/journal.md`.
   - Implementa *locking* de arquivo para segurança em concorrência.
+- **`project_planner` (The Architect)**: Planejamento Estruturado.
+  - Cria e gerencia `docs/task.md` e `docs/implementation_plan.md`.
+  - Força o agente a "Planejar antes de Agir" (com suporte da Regra Global).
+  - Capacidade de arquivar planos antigos (`archive_plan`).
 
 ## Instalação
 

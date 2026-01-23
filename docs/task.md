@@ -1,17 +1,14 @@
-# New Tools & Enhancements (v1.2.0)
+# New Tools & Enhancements (v1.2.1)
 
 - [/] Phase 1: Planning
-  - [x] Brainstorming: Define "The Architect" concept
-  - [ ] Detail tool specifications in `implementation_plan.md`
-  - [ ] Define updates to `global_rules.txt`
+  - [x] Brainstorming: Automate Archive & Reset
+  - [ ] Update `implementation_plan.md`
 
-- [ ] Phase 2: Implementation
-  - [ ] **Tool**: Implement `ProjectPlannerTool`
-    - [ ] `create_plan(goal, steps)`
-    - [ ] `update_progress(step_index, status)`
-  - [ ] **Service**: Implement `PlanningService` (Markdown manipulation)
+- [ ] Phase 2: Implementation (Enhancement)
+  - [ ] **Service**: Update `PlanningService` with `archiveCurrentPlan(label)`
+  - [ ] **Tool**: Add `archive_plan` action to `ProjectPlannerTool`
+    - [ ] Input: `archive_label` (e.g., "v1.2.0_release")
 
-- [ ] Phase 3: Instruction & Verification
-  - [ ] Update `packaging/templates/global_rules.txt` (Enforce planning)
-  - [ ] Verify agent behavior with new rules
-  - [ ] Package & Release v1.2.0
+- [ ] Phase 3: Verification
+  - [ ] Verify archive creation and file reset
+  - [ ] Package & Release v1.2.1

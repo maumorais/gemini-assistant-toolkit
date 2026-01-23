@@ -19,8 +19,8 @@ export class ProjectPlannerTool extends BaseTool {
         properties: {
             action: {
                 type: "string",
-                enum: ["init_plan", "read_plan", "update_task"],
-                description: "Action to perform: 'init_plan' (new), 'read_plan' (check status), 'update_task' (mark progress)."
+                enum: ["init_plan", "read_plan", "update_task", "archive_plan"],
+                description: "Action to perform: 'init_plan' (new), 'read_plan' (check status), 'update_task' (mark progress), 'archive_plan' (save to history)."
             },
             goal: { type: "string", description: "Goal description (for init_plan)" },
             steps: {
@@ -29,18 +29,20 @@ export class ProjectPlannerTool extends BaseTool {
                 description: "List of high-level steps (for init_plan)"
             },
             step_index: { type: "number", description: "Zero-based index of the task to update (for update_task)" },
-            status: { type: "string", enum: ["pending", "in_progress", "done"], description: "New status (for update_task)" }
+            status: { type: "string", enum: ["pending", "in_progress", "done"], description: "New status (for update_task)" },
+            archive_label: { type: "string", description: "Label for the archived files (e.g. 'v1.0.0_feature_x') (for archive_plan)" }
         },
         required: ["action"],
     };
 
     async execute(args: any): Promise<any> {
         const schema = z.object({
-            action: z.enum(["init_plan", "read_plan", "update_task"]),
+            action: z.enum(["init_plan", "read_plan", "update_task", "archive_plan"]),
             goal: z.string().optional(),
             steps: z.array(z.string()).optional(),
             step_index: z.number().optional(),
             status: z.enum(["pending", "in_progress", "done"]).optional(),
+            archive_label: z.string().optional(),
         });
 
         const parseResult = schema.safeParse(args);
@@ -48,7 +50,7 @@ export class ProjectPlannerTool extends BaseTool {
             throw new Error(`Invalid arguments: ${parseResult.error.message}`);
         }
 
-        const { action, goal, steps, step_index, status } = parseResult.data;
+        const { action, goal, steps, step_index, status, archive_label } = parseResult.data;
 
         let result = "";
 
@@ -60,6 +62,9 @@ export class ProjectPlannerTool extends BaseTool {
         } else if (action === "update_task") {
             if (step_index === undefined || !status) throw new Error("update_task requires 'step_index' and 'status'");
             result = await this.planningService.updateTaskStatus(step_index, status);
+        } else if (action === "archive_plan") {
+            if (!archive_label) throw new Error("archive_plan requires 'archive_label'");
+            result = await this.planningService.archiveCurrentPlan(archive_label);
         }
 
         return {
