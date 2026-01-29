@@ -1,6 +1,6 @@
 {
   "name": "gemini-assistant-toolkit",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "MCP pessoal para integrar com repositório GIT",
   "main": "dist/index.js",
   "directories": {

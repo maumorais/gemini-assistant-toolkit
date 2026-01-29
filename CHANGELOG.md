@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.1] - 2026-01-29
+## [1.3.3] - 2026-01-29
+### Docs
+- Updated `README.md` with detailed instructions on how to use the new ZIP releases.
+
+## [1.3.2] - 2026-01-29
 ### Added
 - **ZIP Distribution**: Releases are now packaged as standalone `.zip` files in `releases/`.
 - **Bundled Dependencies**: The release ZIP includes `node_modules`, enabling plug-and-play usage.
