@@ -1,25 +1,33 @@
-# Implementation Plan: v1.3.0 "DevXP Suite" (Batch 3)
+# Implementation Plan: ZIP Release Distribution
 
 ## Goal Description
-Implement 5 advanced tools to simulate "Antigravity behavior" within the Gemini Code Assist agent.
+Enhance the release process to generate a standalone `.zip` archive for each version. This archive will contain the full codebase, including built artifacts (`dist/`) and production dependencies (`node_modules/`), enabling "download & run" usage without requiring `npm install`. The ZIP files will be versioned in Git.
 
-## Proposed Features (Batch 3)
+## User Review Required
+> [!WARNING]
+> **Repository Size**: Versioning ZIP files containing `node_modules` will significantly increase the repository size over time.
+> **Cross-Platform**: `node_modules` installed on Windows may not work on Linux/Mac if native bindings are present (though mostly pure JS for this toolkit, it's a risk).
 
-### 1. `ContextTool` (`context_map`)
-*   Generates a high-level summary of the project structure and key files (package.json, README, etc.) to ground the agent.
+## Proposed Changes
 
-### 2. `VerificationTool` (`verification_agent`)
-*   Executes pre-defined verification commands (npm test, npm run build) and returns the raw output/exit code.
+### Packaging
+#### [MODIFY] [package-release.js](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/packaging/scripts/package-release.js)
+- Add `archiver` (or `adm-zip`) logic to compress the release folder.
+- Ensure the ZIP is placed in `releases/`.
+- Ensure the ZIP includes `node_modules`.
 
-### 3. `KnowledgeTool` (`knowledge_retriever`)
-*   Searches `docs/` and `journal.md` for specific keywords to answer architectural questions.
+### Dependencies
+#### [MODIFY] [package.json](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/package.json)
+- Add `archiver` to `devDependencies`.
 
-### 4. `DecisionTool` (`next_step_advisor`)
-*   Reads `task.md` status + `journal.md` last entry + `git status` to recommend the next logical action.
+### Configuration
+#### [MODIFY] [.gitignore](file:///c:/Desenvolvimento/GitHub/gemini-assistant-toolkit/.gitignore)
+- Ensure `.zip` files in `releases/` are **NOT** ignored (allow listing them).
 
-### 5. `ReviewTool` (`code_reviewer`)
-*   **Action**: `review_changes`
-*   **Logic**:
-    1.  Gets staged files (diff).
-    2.  Applies static analysis rules (simulation: check for console.log, check for missing types, check for long functions).
-    3.  Returns a report: "Warning: found console.log in ..."
+## Verification Plan
+
+### Automated Tests
+- Run `npm run package`.
+- Check if `releases/gemini-assistant-toolkit-x.x.x.zip` exists.
+- Check ZIP size (should be > 1MB due to node_modules).
+- Unzip and run `node dist/toolkit-server.js` to verify it works.

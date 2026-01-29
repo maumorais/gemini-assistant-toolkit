@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
-    "@types/simple-git": "^1.15.0",
+    "archiver": "^7.0.1",
     "typescript": "^5.7.3"
   },
   "repository": {

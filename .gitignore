@@ -13,3 +13,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 *.tsbuildinfo
+
+# Allow release zips
+!releases/*.zip

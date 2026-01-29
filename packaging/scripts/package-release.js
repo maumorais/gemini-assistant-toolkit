@@ -61,3 +61,45 @@ itemsToCopy.forEach(item => {
 
 console.log(`\n✅ Release packaged successfully!`);
 console.log(`📍 Location: ${TARGET_DIR}`);
+
+// 4. Create ZIP
+const archiver = require('archiver');
+const zipName = `${RELEASE_NAME}.zip`;
+const zipPath = path.join(PROJECT_ROOT, 'releases', zipName);
+const output = fs.createWriteStream(zipPath);
+const archive = archiver('zip', { zlib: { level: 9 } });
+
+console.log(`\n- Creating ZIP archive: ${zipName}...`);
+
+output.on('close', function () {
+    console.log(`✅ ZIP created: ${zipPath}`);
+    console.log(`📦 Size: ${archive.pointer()} total bytes`);
+
+    // 5. Cleanup
+    console.log(`- Cleaning up unzipped folder: ${TARGET_DIR}`);
+    try {
+        fs.rmSync(TARGET_DIR, { recursive: true, force: true });
+        console.log(`✅ Cleanup complete.`);
+    } catch (err) {
+        console.warn(`⚠️ Warning: Failed to cleanup ${TARGET_DIR}: ${err.message}`);
+    }
+});
+
+archive.on('warning', function (err) {
+    if (err.code === 'ENOENT') {
+        console.warn(err);
+    } else {
+        throw err;
+    }
+});
+
+archive.on('error', function (err) {
+    throw err;
+});
+
+archive.pipe(output);
+
+// Append the release directory content to the zip
+archive.directory(TARGET_DIR, RELEASE_NAME);
+
+archive.finalize();
