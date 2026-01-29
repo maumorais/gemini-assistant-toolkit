@@ -74,11 +74,35 @@ Adicione ao seu `~/.gemini/settings.json` (ou equivalente):
 
 ## Distribuição (Release)
 
-Para gerar um novo pacote de distribuição (Kit de Instalação):
+## Distribuição (Release)
 
+As releases são distribuídas como arquivos `.zip` independentes na pasta `releases/`. Estes arquivos contêm:
+1. Código transpilado (`dist/`)
+2. Dependências de produção instaladas (`node_modules/`)
+3. Arquivos de configuração essenciais
+
+### Gerando um novo pacote
 1. Atualize a versão no `package.json`.
-2. Execute o comando:
+2. Execute:
    ```bash
    npm run package
    ```
-3. O kit será gerado em `releases/gemini-assistant-toolkit-<versao>/`.
+3. O arquivo será criado em `releases/gemini-assistant-toolkit-<versao>.zip`.
+
+### Instalando uma Release (Usuário Final)
+1. Baixe o arquivo `.zip` da versão desejada em `releases/`.
+2. Extraia para o local definitivo (ex: `C:\Ferramentas\gemini-toolkit`).
+3. Configure o MCP no Gemini apontando para o arquivo extraído:
+   ```json
+   {
+     "mcpServers": {
+       "gemini-toolkit": {
+         "command": "node",
+         "args": [
+           "C:\\Ferramentas\\gemini-toolkit\\dist\\index.js"
+         ]
+       }
+     }
+   }
+   ```
+   *Nota: Não é necessário rodar `npm install` ou `npm run build` ao usar a release zipada.*
